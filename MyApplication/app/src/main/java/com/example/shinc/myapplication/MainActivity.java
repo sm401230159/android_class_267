@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -12,6 +13,9 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,7 +24,9 @@ public class MainActivity extends AppCompatActivity {
     Button click;
     RadioGroup radioGroup;
     CheckBox checkbox;
+    ListView listView;
 
+    ArrayList<String> drinks = new ArrayList<>();
 
 //    String selectSex = "Male";
 //    String name = "";
@@ -35,7 +41,9 @@ public class MainActivity extends AppCompatActivity {
         editText = (EditText)findViewById(R.id.editText);
         radioGroup = (RadioGroup)findViewById(R.id.radioGroup);
         checkbox = (CheckBox)findViewById(R.id.checkBox);
+        listView = (ListView)findViewById(R.id.listView);
 
+        setupListView();
 
         editText.setOnKeyListener(new View.OnKeyListener() {
             @Override
@@ -78,13 +86,22 @@ public class MainActivity extends AppCompatActivity {
 //});
     }
 
+    void setupListView()
+    {
+        String[]data = new String[] {"123","456","789","Hello","ListView","Hi"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, drinks);
+        listView.setAdapter(adapter);
 
+
+    }
 
     public void click(View view)
    {
        String note = editText.getText().toString();
 ////        sex = selectSex;
 //
+       drinks.add(drinkName);
+
        textView.setText(drinkName);
        editText.setText("");
    }
@@ -99,4 +116,7 @@ public class MainActivity extends AppCompatActivity {
 //            textView.setText(name + "sex:" + sex);
 //    }
 //
+
+
+
 }
